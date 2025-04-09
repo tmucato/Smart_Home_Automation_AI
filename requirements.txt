@@ -1,0 +1,1 @@
+openai==0.27.8  # OpenAI API client for command parsing
