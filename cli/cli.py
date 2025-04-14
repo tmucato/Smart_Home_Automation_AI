@@ -1,6 +1,6 @@
-from ..app.smarthome import SmartHome
-from ..app.parse_command import parse_command
-from ..app.command_executor import execute_command
+from app.smarthome import SmartHome
+from app.parse_command import parse_command
+from app.command_executor import execute_command
 
 # CLI Interface
 def main():

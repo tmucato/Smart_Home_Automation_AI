@@ -1,4 +1,4 @@
-from .devices.devices import Light, Fan, Thermostat
+from .devices import Light, Fan, Thermostat
 
 # Smart Home System
 class SmartHome:

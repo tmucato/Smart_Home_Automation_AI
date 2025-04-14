@@ -1,1 +1,3 @@
-from app.devices import Light, Fan, Thermostat
+from .light import Light
+from .fan import Fan
+from .thermostat import Thermostat

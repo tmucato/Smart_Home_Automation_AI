@@ -1,1 +1,9 @@
-openai==0.27.8  # OpenAI API client for command parsing
+google
+pytest
+dotenv
+google-api-core
+google-auth
+google-cloud
+google-cloud-vision
+google-genai
+googleapis-common-protos

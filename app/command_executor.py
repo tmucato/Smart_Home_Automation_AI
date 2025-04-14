@@ -1,4 +1,3 @@
-# Command Execution
 def execute_command(parsed_command, smarthome):
     if not parsed_command:
         return "Sorry, I couldn't understand that command."

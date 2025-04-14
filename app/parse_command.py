@@ -1,31 +1,38 @@
-import openai
-import json
 import os
+import json
+import traceback
+from dotenv import load_dotenv
+from google import genai
 
-# OpenAI Integration
+load_dotenv()
+
 def parse_command(command):
-    openai.api_key = os.getenv("OPENAI_API_KEY")
-    if not openai.api_key:
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if not api_key:
+        print("[Error] GOOGLE_API_KEY not found in environment variables.")
         return None
-
-    system_message = '''
-    You are a smart home command parser. Respond in JSON with keys: "action", "device", "params".
-    Possible actions: turn_on, turn_off, set_speed, set_temperature, get_status.
-    Devices: light, fan, thermostat.
-    Params: For set_speed: low/medium/high. For set_temperature: number. Else: null.
-    Example: {"action": "turn_on", "device": "light", "params": null}
-    '''
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": system_message},
-                {"role": "user", "content": command}
-            ],
-            temperature=0
+        client = genai.Client(api_key=api_key)
+        system_prompt = '''
+        You are a smart home command parser. Respond in JSON with the following keys: "action", "device", "params".
+        Valid actions: turn_on, turn_off, set_speed, set_temperature, get_status.
+        Valid devices: light, fan, thermostat.
+        Params: 
+            - For "set_speed": one of ["low", "medium", "high"]
+            - For "set_temperature": a number (e.g., 22)
+            - For other actions: null
+        Example: {"action": "turn_on", "device": "light", "params": null}
+        '''
+        prompt = f"{system_prompt}\n\nCommand: {command}"
+        response = client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=[prompt]
         )
-        response_text = response.choices[0].message.content
-        parsed = json.loads(response_text)
+        generated_text = response.text.strip().strip('`').strip('json').strip()
+        parsed = json.loads(generated_text)
         return parsed
-    except:
+
+    except Exception as e:
+        print(f"[Error] Failed to parse command: {e}")
+        traceback.print_exc()
         return None
