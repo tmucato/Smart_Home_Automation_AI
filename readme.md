@@ -1,6 +1,6 @@
 # Smart Home Automation AI
 
-This project is a **Smart Home Automation System** powered by AI. It allows users to control smart devices such as lights, fans, and thermostats using natural language commands. The system integrates with OpenAI's API to parse commands and execute them on the respective devices.
+This project is a **Smart Home Automation System** powered by AI. It allows users to control smart devices such as lights, fans, and thermostats using natural language commands. The system integrates with OpenAI's API to parse and execute commands on the respective devices.
 
 ---
 
@@ -14,10 +14,6 @@ This project is a **Smart Home Automation System** powered by AI. It allows user
   - Uses OpenAI's GPT model to interpret natural language commands.
 - **Command-Line Interface (CLI)**:
   - Simple and interactive CLI for user interaction.
-
----
-
-## Project Structure
 
 ---
 
@@ -41,7 +37,7 @@ Smart Home Control System. Enter a command or 'exit' to quit.
 > Turn on the light
 The light is now ON.
 > Set the fan speed to high
-The fan speed is set to high.
+The fan speed is set too high.
 > Get the status of the thermostat
 The thermostat is set to 22°C.
 > exit
